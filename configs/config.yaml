@@ -1,0 +1,11 @@
+data:
+  train_file: data/train.txt
+
+model:
+  bert_model_name: bert-base-uncased
+  save_path: models/sentence_segmentation_model.pt
+
+training:
+  batch_size: 4
+  epochs: 1 # We'll start with 1 epoch for a quick test
+  learning_rate: 2e-5 
