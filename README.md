@@ -7,6 +7,7 @@ This repository contains a customizable sentence segmentation codebase tailored 
 *   **Customizable:** Easily adapt the model to your specific domain and data.
 *   **Trainable:** Train your own sentence segmentation models.
 *   **Extensible:** The modular design allows for easy extension and experimentation with different models and techniques.
+*   **Two Models:** Includes implementations for both a BERT-based model and a BiLSTM-CRF model.
 
 ## Installation
 
@@ -26,33 +27,58 @@ This repository contains a customizable sentence segmentation codebase tailored 
     ```bash
     pip install -r requirements.txt
     ```
-    *(Note: You will need to create a `requirements.txt` file)*
 
 ## Usage
 
 ### Data Preparation
 
-To train a custom model, you need to prepare your data. Describe the expected data format here.
+The first step is to download and prepare the training data. The `billsum` dataset is used for this project.
+
+```bash
+python notebooks/01_download_data.py
+```
+
+This script will download the dataset, process it, and create a `train.txt` file in the `data/` directory.
 
 ### Training
 
-To train a new model, you can use a script like this:
+This project includes two different models for sentence segmentation.
+
+#### BiLSTM-CRF Model
+
+To train the BiLSTM-CRF model, run the following command:
 
 ```bash
-python train.py --config configs/your_config.yaml
+python train_crf.py
 ```
+
+This will use the configuration from `configs/config_crf.yaml`, train the model, and save it to `models/bilstm_crf_model.pt`. The vocabulary will be saved to `models/word_to_idx.pt`.
+
+#### BERT-based Model
+
+To train the BERT-based model, run the following command:
+
+```bash
+python train_bert.py
+```
+
+This will use the configuration from `configs/config.yaml` and save the trained model to `models/sentence_segmentation_model.pt`.
 
 ### Inference
 
-To perform sentence segmentation on a text file:
+To perform sentence segmentation on a text, use the `segment.py` script. This script is designed for the BiLSTM-CRF model.
 
 ```bash
-python segment.py --model_path /path/to/your/model --input_file /path/to/input.txt --output_file /path/to/output.txt
+python segment.py --model_path models/bilstm_crf_model.pt --vocab_path models/word_to_idx.pt --text "This is the first sentence. This is the second sentence."
 ```
 
 ## Configuration
 
-The project can be configured using YAML files located in a `configs/` directory. This allows you to specify model architecture, training parameters, and data paths.
+The project is configured using YAML files in the `configs/` directory:
+*   `config.yaml`: Configuration for the BERT-based model.
+*   `config_crf.yaml`: Configuration for the BiLSTM-CRF model.
+
+This allows you to specify model architecture, training parameters, and data paths.
 
 ## Contributing
 
