@@ -80,6 +80,26 @@ The project is configured using YAML files in the `configs/` directory:
 
 This allows you to specify model architecture, training parameters, and data paths.
 
+## Testing
+
+This project includes scripts to test the accuracy and performance of the sentence segmentation.
+
+### Accuracy Test
+
+To run the accuracy test, you can use the `accuracy_test.py` script. This script uses the `spacy` library to compare the segmentation results.
+
+```bash
+python accuracy_test.py
+```
+
+### Performance Test
+
+To run the performance test, you can use the `performance_test.py` script.
+
+```bash
+python performance_test.py
+```
+
 ## Contributing
 
 Contributions are welcome! Please create an issue to discuss any changes you wish to make.
