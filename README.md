@@ -88,6 +88,8 @@ This project includes scripts to test the accuracy and performance of the senten
 
 To run the accuracy test, you can use the `accuracy_test.py` script. This script uses the `spacy` library to compare the segmentation results.
 
+`spaCy` is an open-source software library for advanced Natural Language Processing (NLP) in Python. It is used here as a baseline to evaluate the performance of our custom sentence segmentation model.
+
 *Note: The script requires the `en_core_web_sm` model from spaCy. If you don't have it installed, you can download it by running:*
 ```bash
 python -m spacy download en_core_web_sm
